@@ -1,20 +1,27 @@
-import { Button } from "@/components/ui/button"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import HomeLayout from "./layout/home/HomeLayout"
+import DashboardLayout from "./layout/dashboard/DashboardLayout"
+import Home from "./features/Home/pages/Home"
 
 export function App() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<h1>Login</h1>} />
+          <Route path="/signup" element={<h1>Signup</h1>} />
+
+          <Route element={<HomeLayout />}>
+            <Route path="/" element={<Home/>} />
+          </Route>
+        </Routes>
+        <Routes>
+          <Route element={<DashboardLayout />}>
+            <Route path="/dashboard" element={<h1>Dashboard</h1>} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   )
 }
 
